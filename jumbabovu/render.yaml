@@ -1,0 +1,61 @@
+databases:
+  - name: jumbabovu-db
+    plan: free
+services:
+  - type: web
+    name: jumbabovu
+    runtime: node
+    plan: free
+    buildCommand: npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_VERSION
+        value: 20
+      - key: DATABASE_URL
+        fromDatabase: {name: jumbabovu-db, property: connectionString}
+      - key: JWT_SECRET
+        generateValue: true
+      - key: ADMIN_EMAIL
+        sync: false
+      - key: ADMIN_PASSWORD
+        sync: false
+      - key: ESCROW_BANK_NAME
+        sync: false
+      - key: ESCROW_ACCOUNT_NAME
+        sync: false
+      - key: ESCROW_ACCOUNT_NO
+        sync: false
+      - key: ESCROW_NOTE
+        sync: false
+      - key: APP_URL
+        sync: false
+      - key: PESAPAL_ENV
+        value: sandbox
+      - key: PESAPAL_CURRENCIES
+        value: TZS,USD
+      - key: PESAPAL_CONSUMER_KEY
+        sync: false
+      - key: PESAPAL_CONSUMER_SECRET
+        sync: false
+      - key: CLOUDINARY_CLOUD_NAME
+        sync: false
+      - key: CLOUDINARY_API_KEY
+        sync: false
+      - key: CLOUDINARY_API_SECRET
+        sync: false
+      - key: SMTP_HOST
+        sync: false
+      - key: SMTP_PORT
+        value: 587
+      - key: SMTP_USER
+        sync: false
+      - key: SMTP_PASS
+        sync: false
+      - key: MAIL_FROM
+        sync: false
+      - key: FEE_BANK_NAME
+        sync: false
+      - key: FEE_ACCOUNT_NAME
+        sync: false
+      - key: FEE_ACCOUNT_NO
+        sync: false
